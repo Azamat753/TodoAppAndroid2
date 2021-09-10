@@ -1,0 +1,2 @@
+rootProject.name = "TodoAppAndroid2"
+include ':app'
