@@ -27,7 +27,6 @@ public class CreateTaskFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         binding = FragmentCreateTaskBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -39,18 +38,14 @@ public class CreateTaskFragment extends Fragment {
     }
 
     private void addTask() {
-        binding.applyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String task = binding.taskEdit.getText().toString();
-                if (!task.isEmpty()) {
-                    model = new TaskModel(task, getString(R.string.example_date));
-                }
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(Constants.KEY_TASK_MODEL,model);
-                Navigation.findNavController(view).navigate(R.id.nav_home,bundle);
+        binding.applyBtn.setOnClickListener(view -> {
+            String task = binding.taskEdit.getText().toString();
+            if (!task.isEmpty()) {
+                model = new TaskModel(task, getString(R.string.example_date));
             }
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(Constants.KEY_TASK_MODEL,model);
+            Navigation.findNavController(view).navigate(R.id.nav_home,bundle);
         });
     }
-
 }

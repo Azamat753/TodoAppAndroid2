@@ -15,5 +15,9 @@
 
     <string name="need_done">Нужно сделать:</string>
     <string name="example_date">06.07.2021</string>
+    <string name="first_text_board">Очень удобный функционал</string>
+    <string name="second_text_board">Быстрый, качественный продукт</string>
+    <string name="third_text_board">Куча функций и интересных фишек</string>
+    <string name="start_work">Начать работу</string>
 
 </resources>
