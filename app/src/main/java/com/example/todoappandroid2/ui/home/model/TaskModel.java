@@ -1,8 +1,13 @@
 package com.example.todoappandroid2.ui.home.model;
 
-import java.io.Serializable;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+@Entity
 public class TaskModel implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
     public String title;
     public String createdDate;
 

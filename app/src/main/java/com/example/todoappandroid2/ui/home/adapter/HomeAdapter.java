@@ -14,14 +14,19 @@ import com.example.todoappandroid2.ui.home.model.TaskModel;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import kotlinx.coroutines.scheduling.Task;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
 
-    public HomeAdapter(ArrayList<TaskModel> list) {
+    public HomeAdapter(List<TaskModel> list,ListenerOnRecycler listener) {
         this.list = list;
+        this.listener= listener;
     }
 
-    ArrayList<TaskModel> list;
+    List<TaskModel> list;
+    ListenerOnRecycler listener;
 
     @Override
     public HomeViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
@@ -47,11 +52,22 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             super(itemView);
             title = itemView.findViewById(R.id.title);
             date = itemView.findViewById(R.id.date_created);
+
         }
 
         public void onBind(TaskModel model) {
             title.setText(model.title);
             date.setText(model.createdDate);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(model);
+                }
+            });
         }
+    }
+
+    public interface ListenerOnRecycler {
+        void onItemClick(TaskModel model);
     }
 }

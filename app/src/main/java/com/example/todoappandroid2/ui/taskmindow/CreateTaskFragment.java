@@ -15,6 +15,7 @@ import com.example.todoappandroid2.R;
 import com.example.todoappandroid2.databinding.FragmentCreateTaskBinding;
 import com.example.todoappandroid2.ui.home.HomeFragmentArgs;
 import com.example.todoappandroid2.ui.home.model.TaskModel;
+import com.example.todoappandroid2.ui.utils.App;
 import com.example.todoappandroid2.ui.utils.Constants;
 
 import org.jetbrains.annotations.NotNull;
@@ -42,10 +43,9 @@ public class CreateTaskFragment extends Fragment {
             String task = binding.taskEdit.getText().toString();
             if (!task.isEmpty()) {
                 model = new TaskModel(task, getString(R.string.example_date));
+                App.getInstance().getDataBase().taskDao().insert(model);
             }
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(Constants.KEY_TASK_MODEL,model);
-            Navigation.findNavController(view).navigate(R.id.nav_home,bundle);
+            Navigation.findNavController(view).navigate(R.id.nav_home);
         });
     }
 }
