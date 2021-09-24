@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_auth">
 
     <fragment
         android:id="@+id/nav_home"
@@ -13,6 +13,13 @@
         <argument
             android:name="model"
             app:argType="com.example.todoappandroid2.ui.home.model.TaskModel" />
+        <action
+            android:id="@+id/action_nav_home_to_createTaskFragment"
+            app:destination="@id/createTaskFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -20,6 +27,11 @@
         android:name="com.example.todoappandroid2.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
+    <fragment
+        android:id="@+id/nav_auth"
+        android:name="com.example.todoappandroid2.auth.AuthFragment"
+        android:label="Auth"
+        tools:layout="@layout/fragment_auth"/>
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -30,6 +42,12 @@
         android:id="@+id/createTaskFragment"
         android:name="com.example.todoappandroid2.ui.taskmindow.CreateTaskFragment"
         android:label="fragment_create_task"
-        tools:layout="@layout/fragment_create_task" />
+        tools:layout="@layout/fragment_create_task" >
+        <action
+            android:id="@+id/action_createTaskFragment_to_nav_home"
+            app:destination="@id/nav_home"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
+    </fragment>
 
 </navigation>
